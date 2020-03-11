@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.util.logging.Logger"/>
+    <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+    <fullyQualifiedTypeName name="java.util.regex.Matcher"/>
+    <fullyQualifiedTypeName name="java.nio.file.FileSystem"/>
+    <fullyQualifiedTypeName name="org.apache.hadoop.util.ToolRunner"/>
+    <fullyQualifiedTypeName name="org.apache.hadoop.mapreduce.Reducer.Context"/>
+    <fullyQualifiedTypeName name="org.w3c.dom.Text"/>
+</qualifiedTypeNameHistroy>

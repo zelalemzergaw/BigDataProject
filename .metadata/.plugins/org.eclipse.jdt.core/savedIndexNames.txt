@@ -1,0 +1,8 @@
+INDEX VERSION 1.131+/home/zelalem/Desktop/Bigdata/BigDataProject/.metadata/.plugins/org.eclipse.jdt.core
+675289249.index
+646308851.index
+3876611390.index
+680312502.index
+3034998280.index
+4142346764.index
+1869798755.index

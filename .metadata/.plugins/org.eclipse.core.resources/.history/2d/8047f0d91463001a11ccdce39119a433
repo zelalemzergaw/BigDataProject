@@ -1,0 +1,78 @@
+package inmapperavearge;
+import java.io.IOException;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.*;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+public class InMapperAverage {
+     
+	public class AverageComputationMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+
+	    @Override
+	    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+
+	        String pattern = "^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+)\\s?(\\S+)?\\s?(\\S+)?\" (\\d{3}|-) (\\d+|-)\\s?\"?([^\"]*)\"?\\s?\"?([^\"]*)?\"?$";
+	        Pattern r = Pattern.compile(pattern);
+	        Matcher m = r.matcher(value.toString());
+	        if (m.find( )) {
+	            String sourceIP = m.group(1);
+	            String contentSize = m.group(9);
+	            int size = 0;
+	            try{
+	                size = Integer.parseInt(contentSize);
+	            }catch (NumberFormatException e) {}
+	            context.write(new Text(sourceIP), new IntWritable(size));
+	        }
+	    }
+
+	}
+     
+	public class AverageComputationReducer extends Reducer<Text, IntWritable, Text, DoubleWritable> {
+
+	    @Override
+	    public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException
+	    {
+	        int sum = 0, count = 0;
+	        for (IntWritable val : values)
+	        {
+	            sum += val.get();
+	            count++;
+	        }
+	        DoubleWritable result = new DoubleWritable();
+	        result.set(sum / count);
+	        context.write(key, result);
+	    }
+
+	}
+     
+	
+ public static void main(String[] args) throws Exception {
+    Configuration conf = new Configuration();
+     
+    Job job = new Job(conf, "wordcount");
+    //Job job = Job.getInstance(conf, "wordcount");
+    job.setJarByClass(InMapperAverage.class);
+    job.setOutputKeyClass(Text.class);
+    job.setOutputValueClass(IntWritable.class);
+     
+    job.setMapperClass(Map.class);
+    job.setReducerClass(Reduce.class);
+     
+    job.setInputFormatClass(TextInputFormat.class);
+    job.setOutputFormatClass(TextOutputFormat.class);
+     
+    FileInputFormat.addInputPath(job, new Path(args[0]));
+    FileOutputFormat.setOutputPath(job, new Path(args[1]));
+     
+    job.waitForCompletion(true);
+ }
+     
+}
