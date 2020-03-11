@@ -60,6 +60,7 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="/home/zelalem/Desktop/Bigdata/BigDataProject/jarfiles/pairRelative.jar"/>
 			<item value="/home/zelalem/Desktop/Bigdata/jarfiles/parttwo.jar"/>
 			<item value="/home/zelalem/Desktop/Bigdata/jarfiles/InMapperaverage.jar"/>
 			<item value="/home/zelalem/Desktop/Bigdata/jar files/average.jar"/>
