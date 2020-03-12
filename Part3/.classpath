@@ -6,5 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/home/zelalem/Documents/jar files/hadoop-common-2.7.3.jar"/>
+	<classpathentry kind="lib" path="/home/zelalem/Documents/jar files/hadoop-mapreduce-client-core-2.7.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
